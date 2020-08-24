@@ -65,7 +65,7 @@ function App() {
     let title = values.title;
     console.log(JSON.stringify({author, text, title}))
     
-    fetch(`${process.env.REACT_APP_ENTRIES_API}entries`, {
+    fetch(`${process.env.REACT_APP_ENTRIES_API}/entries`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ function App() {
   }
   function deleteEntry() {
     let id = prompt('Enter entry id');
-    fetch(`${process.env.REACT_APP_ENTRIES_API}entries/${id}`, {
+    fetch(`${process.env.REACT_APP_ENTRIES_API}/entries/${id}`, {
       method: 'DELETE',
     })
       .then(response => {
