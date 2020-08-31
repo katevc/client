@@ -1,3 +1,18 @@
+## SOLSTICE Content Management System Front-end
+
+### Running Locally:
+To set up your project locally ensure that you have the "server" repo downloaded as well and running already (instructions on how to run provided in the README file for that project). NOTE: to get the server repo running correctly (i.e. ensure that you are connected to our solstice database), you will need to be connected to Michigan's VPN service (https://its.umich.edu/enterprise/wifi-networks/vpn/getting-started).
+
+Once server is running, verify that you have a .env file in this project and that the environment variable REACT_APP_ENTRIES_API is defined with the port on your computer that the server is running on. For example, if my server is running on port 3001 (which is the default port defined by the project), REACT_APP_ENTRIES_API=http://localhost:3001/ should be contained in the .env file.
+
+Now that your project is set up, use `npm start` to run the front end.
+
+### Uploading to Openshift
+Within this repo, you can find a dockerfile, which outlines how the image we will upload to Openshift is built.
+
+After logging in to the solstice project in Openshift, use the new-app command to upload the image to that project (you will need to do the same with the back-end). 
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
