@@ -12,7 +12,11 @@ Within this repo, you can find a dockerfile, which outlines how the image we wil
 
 After logging in to the solstice project in Openshift, use the new-app command to upload the image to that project (you will need to do the same with the back-end). 
 
+Like before, you need to have the server project set up on Openshift and define an environment variable for where the server is running (this env variable is defined within the pod for the client). Make sure to create a route to the server (either in the openshift web app or via command line in your new-app command). Once you have that route, go to "Builds" on openshift, click on the pod for this client project (may be named client or whatever else you define) and go to "Environment Variables."
 
+Within Openshift, to define the environment variable, in the name field enter REACT_APP_ENTRIES_API and in the value field, enter the full route of the server pod (this is a link - do NOT use the server's hostName as defined in Openshift). 
+
+---------------------------------------------------------------------------------------
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
