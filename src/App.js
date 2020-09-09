@@ -23,7 +23,7 @@ function App() {
   }*/
 
   const onSubmit = values => {
-    console.log(JSON.stringify(values, 0, 2));
+    console.log(JSON.stringify(values));
     createEntry(values);
   };
 
@@ -63,14 +63,17 @@ function App() {
     let author = values.author;
     let text = values.text;
     let title = values.title;
-    console.log(JSON.stringify({author, text, title}))
+    let imageURL = values.imageURL;
+
+    console.log("testing image url");
+    console.log(JSON.stringify({author, text, title, imageURL}));
     
     fetch(`${process.env.REACT_APP_ENTRIES_API}/entries`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({author, text, title}),
+      body: JSON.stringify({author, text, title, imageURL}),
     })
       .then(response => {
         return response.text();
@@ -104,7 +107,7 @@ function App() {
         <CssBaseline />
         <Typography variant="h4" align="center" component="h1" gutterBottom>
           SOLSTICE News Page
-      </Typography>
+        </Typography>
 
         <Form
           onSubmit={onSubmit}
@@ -133,7 +136,6 @@ function App() {
                     />
                   </Grid>
 
-
                   <Grid item xs={12}>
                     <Field
                       fullWidth
@@ -143,6 +145,16 @@ function App() {
                       multiline
                       rows={18}
                       label="Enter Post Text"
+                    />
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <Field
+                      fullWidth
+                      name="imageURL"
+                      type="text"
+                      component={TextField}
+                      label="URL for Image"
                     />
                   </Grid>
 
@@ -158,7 +170,7 @@ function App() {
                   </Grid>
                 </Grid>
               </Paper>
-              <pre>{JSON.stringify(values, 0, 2)}</pre>
+              <pre>{JSON.stringify(values)}</pre>
             </form>
           )}
         />
@@ -168,22 +180,17 @@ function App() {
           {
             entries.map((postdata) => {
               return(
-              <NewsPost 
+              <NewsPost key={postdata.postid}
                 title={postdata.title}
-                date={postdata.date}
+                date={postdata.date_created}
                 author={postdata.author}
                 text={postdata.text}
+                imageURL={postdata.image_url}
              >
               </NewsPost>)
             })
           }
         </div>
-        <NewsPost 
-          title={"This is a News Title"} 
-          date={"8/2/20"} 
-          author={"Kate Carlton"}
-          text = {"Up unpacked friendly ecstatic so possible humoured do. Ample end might folly quiet one set spoke her. We no am former valley assure. Four need spot ye said we find mile. Are commanded him convinced dashwoods did estimable forfeited. Shy celebrated met sentiments she reasonably but. Proposal its disposed eat advanced marriage sociable. Drawings led greatest add subjects endeavor remember. Principles one yet assistance you met impossible. Continual delighted as elsewhere am convinced unfeeling. Introduced stimulated attachment no by projection. To loud lady whom my mile sold four. Need miss all four case fine age tell. He families my pleasant speaking it bringing it thoughts. View busy dine oh in knew if even. Boy these along far own other equal old fanny charm. Difficulty invitation put introduced see middletons nor preference. Gay one the what walk then she. Demesne mention promise you justice arrived way. Or increasing to in especially inquietude companions acceptance admiration. Outweigh it families distance wandered ye an. Mr unsatiable at literature connection favourable. We neglected mr perfectly continual dependent."} 
-        />
         <Button
           variant="contained"
           color="secondary"

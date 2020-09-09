@@ -3,6 +3,7 @@ import {
   Typography,
   Divider
 } from '@material-ui/core';
+import Image from 'react-bootstrap/Image';
 
 
 const NewsPost = (props) => {
@@ -16,6 +17,10 @@ const NewsPost = (props) => {
         {props.author}
       </Typography>
       <Divider />
+      <img src={props.imageURL} alt="SOLSTICE article image"/>
+      <Typography gutterBottom variant="h6" align="left">
+        {props.imageURL}
+      </Typography>
       <Typography gutterBottom variant="h6" align="left">
         {props.text}
       </Typography>
